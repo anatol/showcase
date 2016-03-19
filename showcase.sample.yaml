@@ -1,0 +1,7 @@
+wait_time: 20 # 20 seconds per page
+
+pages:
+  - url: http://google.com
+    wait_time: 2
+  - url: http://bbs.archlinux.org
+  - url: http://archlinux.org
