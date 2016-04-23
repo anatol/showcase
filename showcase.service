@@ -9,6 +9,7 @@ Group = showcase
 PAMName = login
 Type = simple
 TTYPath = /dev/tty7
+ExecStartPre=DISPLAY=:0 xset -dpms
 ExecStart = /usr/bin/xinit /usr/bin/dbus-launch --exit-with-session /usr/bin/showcase -- :0 -nolisten tcp vt7
 Restart = on-abort
 StandardInput = tty

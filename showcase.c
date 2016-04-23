@@ -40,9 +40,9 @@ static void powermanagement_inhibit()
     }
 
     DBusMessage* msg = dbus_message_new_method_call(
-        "org.freedesktop.PowerManagement.Inhibit",
-        "/org/freedesktop/PowerManagement/Inhibit",
-        "org.freedesktop.PowerManagement.Inhibit.Inhibit",
+        "org.freedesktop.ScreenSaver",
+        "/ScreenSaver",
+        "org.freedesktop.ScreenSaver",
         "Inhibit");
     if (!msg) {
         fprintf(stderr, "DBus inhibit message is not created\n");
