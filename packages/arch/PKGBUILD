@@ -28,4 +28,5 @@ build() {
 package() {
   cd showcase
   make install DESTDIR="$pkgdir"
+  install -Dm644 xinitrc "$pkgdir"/var/lib/showcase/.xinitrc
 }
