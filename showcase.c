@@ -23,7 +23,9 @@ static gboolean showcase_next_page(gpointer unused)
 
     webkit_web_view_load_uri(state.browser, page->url);
 
-    gdk_threads_add_timeout_seconds(wait_time, showcase_next_page, NULL);
+    // Do not iterate over if only 1 url is specified
+    if (config.pages_num > 1)
+       gdk_threads_add_timeout_seconds(wait_time, showcase_next_page, NULL);
     return FALSE;
 }
 
