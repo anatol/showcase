@@ -29,6 +29,18 @@ static gboolean showcase_next_page(gpointer unused)
     return FALSE;
 }
 
+static gboolean showcase_load_failed(WebKitWebView  *web_view,
+               WebKitLoadEvent load_event,
+               gchar          *failing_uri,
+               GError         *error,
+               gpointer        user_data) {
+
+    // in case of load error just keep retrying
+    webkit_web_view_reload(web_view);
+
+    return FALSE;
+}
+
 static void powermanagement_inhibit()
 {
     DBusError err;
@@ -95,6 +107,7 @@ int main(int argc, char* argv[])
     gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(web_view));
     g_signal_connect(main_window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
     g_signal_connect(web_view, "close", G_CALLBACK(gtk_widget_destroy), main_window);
+    g_signal_connect(web_view, "load-failed", G_CALLBACK(showcase_load_failed), NULL);
     state.browser = web_view;
 
     showcase_next_page(NULL);
